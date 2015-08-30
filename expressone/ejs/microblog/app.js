@@ -8,8 +8,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// 引入文件读取模块
-var fs = require('fs');
 
 // 加载路由控制
 var routes = require('./routes/index');
@@ -38,15 +36,6 @@ app.use(express.static(path.join(__dirname, 'public'))); // connect内建的中�
 // 匹配路径和路由
 app.use('/', routes);
 app.use('/users', users);
-
-// readTestMd http://localhost:3000/readTestMd
-app.get('/readTestMd', function(req, res) {
-  // fs.readFile('./blogs/test.md', function (err, data) { 不能打开文件，只会显示一个文件下载。因为如果该方法不指定编码，则返回原始buffer(If no encoding is specified, then the raw buffer is returned.)。而buffer对应的content-type是application/octet-stream。
-  fs.readFile('./blogs/test.md', 'utf-8', function (err, data) {
-    if (err) res.send(err);
-    res.send(data);
-  });
-});
 
 // catch 404 and forward to error handler // 404错误处理
 app.use(function(req, res, next) {
