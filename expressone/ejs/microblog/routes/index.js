@@ -5,7 +5,12 @@ var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express', layout: 'layout/default/layout' });
+});
+
+/* GET home page. */
+router.get('/admin', function(req, res, next) {
+  res.render('index', { title: 'Express', layout: 'layout/admin/layout' });
 });
 
 // readTestMd http://localhost:3000/readTestMd
